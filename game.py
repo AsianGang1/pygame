@@ -23,7 +23,7 @@ import time
 
 root = Tk()
 root.resizable(False, False)
-canvas = Canvas(root, width=800, height=700)
+canvas = Canvas(root, width=480, height=420)
 canvas.pack()
 turn = "virus"
 people = []
@@ -68,7 +68,7 @@ class Person:
         self.turns_death = 3 + random.randrange(1, 3)
 
     def draw(self):
-        canvas.create_rectangle(self.x * 50, self.y * 50, self.x * 50 + 50, self.y * 50 + 50, fill="black")
+        canvas.create_rectangle(self.x * 30, self.y * 30, self.x * 30 + 30, self.y * 30 + 30, fill="black")
 
     def move(self):
         available = check_surroundings(self)
@@ -89,8 +89,8 @@ def a(): # remove this later when people move properly
         x.draw()
 
 
-for i in range(0, 5600):
-    canvas.create_rectangle(50 * (i % 80), 50 * (i // 80), 50 * (i % 80) + 50, 50 * (i // 80) + 50, fill="white")
+for i in range(0, 14*16):
+    canvas.create_rectangle(30 * (i % 16), 30 * (i // 16), 30 * (i % 16) + 30, 30 * (i // 16) + 30, fill="white")
 for x in range(0, 30):
     location = getLocation()
     people.append(Person(location[0], location[1]))
