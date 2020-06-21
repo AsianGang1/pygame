@@ -22,19 +22,43 @@ import random
 import time
 
 root = Tk()
+root.resizable(False, False)
 canvas = Canvas(root, width=800, height=700)
 canvas.pack()
 turn = "virus"
 people = []
 
+
 def getLocation():
-    rand_x = random.randrange(1,14)
-    rand_y = random.randrange(1,16)
+    rand_x = random.randrange(1, 14)
+    rand_y = random.randrange(1, 16)
     for person in people:
         if rand_x == person.x and rand_y == person.y:
             getLocation()
             break
     return [rand_x, rand_y]
+
+
+def check_surroundings(self):
+    available = ["up", "down", "left", "right"]
+    for person in people:
+        if person == self:
+            continue
+        if self.x + 1 == person.x:
+            available[3] = 0
+        if self.x - 1 == person.x:
+            available[2] = 0
+        if self.y + 1 == person.y:
+            available[1] = 0
+        if self.y - 1 == person.y:
+            available[0] = 0
+    for x in available:
+        if x == 0:
+            available.remove(x)
+    print(available)
+    return available
+
+
 class Person:
     def __init__(self, x, y):
         self.x = x
@@ -44,16 +68,35 @@ class Person:
         self.turns_death = 3 + random.randrange(1, 3)
 
     def draw(self):
-        canvas.create_rectangle(self.x*50, self.y*50, self.x*50 + 50, self.y*50 + 50, fill="black")
+        canvas.create_rectangle(self.x * 50, self.y * 50, self.x * 50 + 50, self.y * 50 + 50, fill="black")
+
+    def move(self):
+        available = check_surroundings(self)
+        move = available[random.randrange(0, len(available))]
+        if move == "up":
+            self.y -= 1
+        elif move == "down":
+            self.y += 1
+        elif move == "right":
+            self.x += 1
+        elif move == "left":
+            self.x -= 1
+
+
+def a(): # remove this later when people move properly
+    for x in people:
+        x.move()
+        x.draw()
 
 
 for i in range(0, 5600):
     canvas.create_rectangle(50 * (i % 80), 50 * (i // 80), 50 * (i % 80) + 50, 50 * (i // 80) + 50, fill="white")
 for x in range(0, 30):
     location = getLocation()
-    print(location)
     people.append(Person(location[0], location[1]))
 canvas.update()
 for person in people:
     person.draw()
+button = Button(text="p", command=a)
+button.pack()
 root.mainloop()
