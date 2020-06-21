@@ -24,7 +24,9 @@ import time
 root = Tk()
 root.resizable(False, False)
 canvas = Canvas(root, width=480, height=420)
+root.title("Game")
 canvas.pack()
+canvas2=Canvas(root,width=480,height=420)
 turn = "virus"
 people = []
 
@@ -88,6 +90,21 @@ def a(): # remove this later when people move properly
         x.move()
         x.draw()
 
+def openshop():
+    canvas.pack_forget()
+    button.pack_forget()
+    button2.pack_forget()
+    root.title("Shop")
+    canvas2.pack()
+    button3.pack()
+
+def closeshop():
+    canvas2.pack_forget()
+    button3.pack_forget()
+    root.title("Game")
+    canvas.pack()
+    button.pack()
+    button2.pack()
 
 for i in range(0, 14*16):
     canvas.create_rectangle(30 * (i % 16), 30 * (i // 16), 30 * (i % 16) + 30, 30 * (i // 16) + 30, fill="white")
@@ -98,5 +115,8 @@ canvas.update()
 for person in people:
     person.draw()
 button = Button(text="p", command=a)
+button2=Button(text="shop",command=openshop)
+button3=Button(text="go back", command=closeshop)
 button.pack()
+button2.pack()
 root.mainloop()
