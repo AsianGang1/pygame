@@ -1,1 +1,1 @@
-from tkinkter iport *
+from tkinkter import *
