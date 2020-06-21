@@ -26,17 +26,17 @@ root.resizable(False, False)
 canvas = Canvas(root, width=480, height=420)
 root.title("Game")
 canvas.pack()
-canvas2=Canvas(root,width=480,height=420)
+canvas2 = Canvas(root, width=480, height=420)
 turn = "virus"
 people = []
 
 
-def getLocation():
+def get_location():
     rand_x = random.randrange(1, 14)
     rand_y = random.randrange(1, 16)
     for person in people:
         if rand_x == person.x and rand_y == person.y:
-            getLocation()
+            get_location()
             break
     return [rand_x, rand_y]
 
@@ -46,13 +46,13 @@ def check_surroundings(self):
     for person in people:
         if person == self:
             continue
-        if self.x + 1 == person.x:
+        if self.x + 1 == person.x and self.x + 1 < 14:
             available[3] = 0
-        if self.x - 1 == person.x:
+        if self.x - 1 == person.x and self.x - 1 > 0:
             available[2] = 0
-        if self.y + 1 == person.y:
+        if self.y + 1 == person.y and self.y + 1 < 16:
             available[1] = 0
-        if self.y - 1 == person.y:
+        if self.y - 1 == person.y and self.y - 1 > 0:
             available[0] = 0
     for x in available:
         if x == 0:
@@ -85,10 +85,11 @@ class Person:
             self.x -= 1
 
 
-def a(): # remove this later when people move properly
+def a():  # remove this later when people move properly
     for x in people:
         x.move()
         x.draw()
+
 
 def openshop():
     canvas.pack_forget()
@@ -98,6 +99,7 @@ def openshop():
     canvas2.pack()
     button3.pack()
 
+
 def closeshop():
     canvas2.pack_forget()
     button3.pack_forget()
@@ -106,17 +108,18 @@ def closeshop():
     button.pack()
     button2.pack()
 
-for i in range(0, 14*16):
+
+for i in range(0, 14 * 16):
     canvas.create_rectangle(30 * (i % 16), 30 * (i // 16), 30 * (i % 16) + 30, 30 * (i // 16) + 30, fill="white")
 for x in range(0, 30):
-    location = getLocation()
+    location = get_location()
     people.append(Person(location[0], location[1]))
 canvas.update()
 for person in people:
     person.draw()
 button = Button(text="p", command=a)
-button2=Button(text="shop",command=openshop)
-button3=Button(text="go back", command=closeshop)
+button2 = Button(text="shop", command=openshop)
+button3 = Button(text="go back", command=closeshop)
 button.pack()
 button2.pack()
 root.mainloop()
