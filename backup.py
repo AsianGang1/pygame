@@ -9,16 +9,6 @@ canvas.pack()
 root.update()
 
 running = True
-command = [['zizz','zizz','zizz','zizz','zizz','zizz','zizz','zizz','zizzle','zizzle'],
-           ['zizzle','zizzle','zizzle','zizzle','zizzle','zizzle','boom','boom','boom','boom'],
-            ['boom','boom','boom','boom','kabang','kabang','kabang','kabang','kabang','kabang'],
-             ['kabang','kabang','kabang','kabang','freeze','freeze','freeze','freeze','freeze','freeze'],
-           ['kamikazee','call for aid','fire slash','fire slash','karacaracle slash','karacaracle slash','metal blade', 'metal blade','hatchet throw','hatchet throw'],
-           ['hatchet throw','hatchet throw','whack','whack','whack','whack','thwack','thwack','thwack','thwack'],
-           ['magic burst','magic burst','magic burst','magic burst','karacaracle slash','metal blade','metal blade','fire slash','call for aid','kamikazee',],
-           ['kamikazee' ,'psyche up','psyche up','psyche up','psyche up','psyche up','speed up','speed up','speed up',],
-           ['speed up','call of aid','Socialism','reflect','reflect','reflect','reflect','reflect','reflect','reflect'],
-           ['rejuvenate','rejuvenate','rejuvenate','rejuvenate','rejuvenate','rejuvenate','rejuvenate','rejuvenate','wind circle','wind circle','wind circle','wind circle']]
 
 command_list=[]
 command_focus = False
