@@ -27,6 +27,14 @@ canvas.pack()
 turn = "virus"
 people = []
 
+def getLocation():
+    rand_x = random.randrange(1,14)
+    rand_y = random.randrange(1,16)
+    for person in people:
+        if rand_x == person.x and rand_y == person.y:
+            getLocation()
+            break
+    return [rand_x, rand_y]
 class Person:
     def __init__(self, x, y):
         self.x = x
@@ -36,16 +44,16 @@ class Person:
         self.turns_death = 3 + random.randrange(1, 3)
 
     def draw(self):
-        canvas.create_rectangle(self.x, self.y, self.x + 50, self.y + 50, fill="black")
+        canvas.create_rectangle(self.x*50, self.y*50, self.x*50 + 50, self.y*50 + 50, fill="black")
 
 
 for i in range(0, 5600):
     canvas.create_rectangle(50 * (i % 80), 50 * (i // 80), 50 * (i % 80) + 50, 50 * (i // 80) + 50, fill="white")
 for x in range(0, 30):
-    Person(x, x)
+    location = getLocation()
+    print(location)
+    people.append(Person(location[0], location[1]))
 canvas.update()
-while True:
-    for person in people:
-        person.draw()
-    root.update()
-    time.sleep(0.01)
+for person in people:
+    person.draw()
+root.mainloop()
