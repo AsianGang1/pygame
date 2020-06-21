@@ -6,6 +6,8 @@ virus player abilities:
   invest in manual infections where he can choose (manual infect). can increase manual infections from 1 up to 4. *supposed to simulate*
   spends virus points for in
 """
-from tkinkter import *
+from tkinter import *
 root=Tk()
-canvas=Canvas(root,width=,height=)
+canvas=Canvas(root,width=800,height=700)
+canvas.pack()
+mainloop()
