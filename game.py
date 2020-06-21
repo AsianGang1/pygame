@@ -10,4 +10,7 @@ from tkinter import *
 root=Tk()
 canvas=Canvas(root,width=800,height=700)
 canvas.pack()
+for i in range(0,5600):
+  canvas.create_rectangle(10*(i%80),10*(i//80),10*(i%80)+10,10*(i//80)+10,fill="white")
+canvas.update()
 mainloop()
