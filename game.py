@@ -18,10 +18,21 @@ winning as virus:
 *every turn the people on the board will move 1 square unless social distancing is used that turn
 """
 from tkinter import *
+x=0
+y=0
+def getcoordonclick(eventorigin):
+   global x
+   global y
+   x=eventorigin.x
+   y=eventorigin.y
+   print(x,y)
+
+
 root=Tk()
-canvas=Canvas(root,width=800,height=700)
+canvas=Canvas(root,width=700,height=500)
 canvas.pack()
 for i in range(0,5600):
-  canvas.create_rectangle(50*(i%80),50*(i//80),50*(i%80)+50,50*(i//80)+50,fill="white")
+  canvas.create_rectangle(50*(i%80)+1,50*(i//80)+1,50*(i%80)+51,50*(i//80)+51,fill="white",width=1)
 canvas.update()
+canvas.bind("<Button-1>",getcoordonclick)
 mainloop()
