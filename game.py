@@ -29,6 +29,8 @@ canvas.pack()
 canvas2 = Canvas(root, width=480, height=420)
 turn = "virus"
 people = []
+xglobal=0
+yglobal=0
 
 
 def get_location():
@@ -108,6 +110,15 @@ def closeshop():
     button.pack()
     button2.pack()
 
+def getorigin(eventorigin):
+    global xglobal,yglobal
+    xglobal=eventorigin.x
+    yglobal=eventorigin.y
+    print(xglobal,yglobal)
+    for i in range(0,14*16):
+        if 30*(i%16)<xglobal and xglobal<30*(i%16)+30:
+            if 30*(i//16)<yglobal and yglobal<30*(i//16)+30:
+                canvas.create_rectangle(30 * (i % 16), 30 * (i // 16), 30 * (i % 16) + 30, 30 * (i // 16) + 30, fill="blue")
 
 for i in range(0, 14 * 16):
     canvas.create_rectangle(30 * (i % 16), 30 * (i // 16), 30 * (i % 16) + 30, 30 * (i // 16) + 30, fill="white")
@@ -120,6 +131,8 @@ for person in people:
 button = Button(text="p", command=a)
 button2 = Button(text="shop", command=openshop)
 button3 = Button(text="go back", command=closeshop)
+if not canvas.winfo_manager()=="":
+    canvas.bind("<Button-1>",getorigin)
 button.pack()
 button2.pack()
 root.mainloop()
